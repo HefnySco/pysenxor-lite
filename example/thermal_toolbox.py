@@ -217,7 +217,7 @@ def main():
     cmap = get_colormaps(args.colormap, namespace="cv")
     window_name = f"Thermal Image - {mi48.get_sn()}"
     stream_size = (640, 480)
-
+    mi48.set_read_temp_units(temp_units='C')
     # Configure stdout for binary output if streaming
     if args.stream:
         sys.stdout = sys.stdout.buffer
@@ -249,12 +249,12 @@ def main():
         img_enlarged_rgb = enlarge(img_colored_rgb, args.img_scale)
 
         # Find and annotate min/max temperature points
-        min_val, max_val, min_loc, max_loc = cv.minMaxLoc(frame_smoothed)
+        min_val, max_val, min_loc, max_loc = cv.minMaxLoc(frame)
         scale = args.img_scale
         min_loc_scaled = (int(min_loc[0] * scale), int(min_loc[1] * scale))
         max_loc_scaled = (int(max_loc[0] * scale), int(max_loc[1] * scale))
-        min_val = min_val / 10.0;
-        max_val = max_val / 10.0;
+        min_val = min_val / 10.0
+        max_val = max_val / 10.0
         cv.putText(img_enlarged_rgb, "+", min_loc_scaled, CVFONT, CVFONT_SIZE, WHITE, 2)
         cv.putText(img_enlarged_rgb, f"{min_val:.1f}C", (min_loc_scaled[0] + 10, min_loc_scaled[1]), CVFONT, CVFONT_SIZE, WHITE, 1)
         cv.putText(img_enlarged_rgb, "+", max_loc_scaled, CVFONT, CVFONT_SIZE, WHITE, 2)
