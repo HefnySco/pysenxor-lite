@@ -1,8 +1,8 @@
 [project]
 name = "pysenxor"
-version = "3.0.0"
+version = "3.0.1"
 authors = [{ name = "Merididan Innovation", email = "info@meridianinno.com" }]
-description = "Python library for interaction with Meridian Innovation's SenXor(TM)"
+description = "Python library for interaction with Meridian Innovation's SenXor(TM) - DroneEngage Variant"
 readme = "README.md"
 requires-python = ">=3.9"
 classifiers = [
